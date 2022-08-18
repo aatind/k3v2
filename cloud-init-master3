@@ -1,0 +1,21 @@
+ssh_authorized_keys:
+- github:aatind
+hostname: k3os-v2-public-master3
+boot_cmd:
+- mkdir -p /var/lib/nfs/sm
+- rc-update add rpc.statd
+- rc-update add nfs
+
+k3os:
+  token: K10d5dee369cd14065b0f7edfe47c3e295c413e8fa8dbd1c82e22762d5687b200ad::server:8aef373978173998d7dcf24fdb5b5566
+  k3sArgs:
+    - server
+    - --server
+    - https://k3s-v2-public.systechit.local:6443
+    - --cluster-init
+    - --tls-san=k3s-v2-public.systechit.local
+    - --flannel-backend=vxlan
+    - --disable=local-storage,traefik,servicelb
+
+run_cmd:
+- "sh /etc/initial-setup.sh"
