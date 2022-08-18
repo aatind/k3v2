@@ -10,4 +10,4 @@ boot_cmd:
 
 k3os:
   server_url: https://k3s-v2-public.systechit.local:6443
-  token: K10fc0d6322d62dfc4cef69ae3a8e7c2ff24ec1a6e7693bbfff09b699af96fe5249::server:983df621c385284c1191c7aaa8380db1
+  token: K106e660c9598cb67627040f42f816c87f86e763baa56eba3807169ad4cf7a66123::server:b015d42dad61cef0e99abba70db023db
