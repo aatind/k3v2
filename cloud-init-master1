@@ -17,16 +17,16 @@ write_files:
     export INTERFACE=eth0
     curl -sL https://kube-vip.io/manifests/rbac.yaml > /var/lib/rancher/k3s/server/manifests/kube-vip-rbac.yaml
     curl -sL kube-vip.io/k3s | vipAddress=${K3S_VIP_IP} vipInterface=${INTERFACE} sh | sudo tee /var/lib/rancher/k3s/server/manifests/vip.yaml
+    curl -sL https://raw.githubusercontent.com/metallb/metallb/v0.13.4/config/manifests/metallb-native.yaml > /var/lib/rancher/k3s/server/manifests/metallb-native.yaml
+    curl -sL https://raw.githubusercontent.com/aatind/k3v2/main/metallb-config.yaml > /var/lib/rancher/k3s/server/manifests/metallb-config.yaml
 
-    #Kube-vip Cloud Provider
-    curl -sL https://raw.githubusercontent.com/kube-vip/kube-vip-cloud-provider/main/manifest/kube-vip-cloud-controller.yaml > /var/lib/rancher/k3s/server/manifests/kube-vip-cloud-provider.yaml
-    curl -sL https://raw.githubusercontent.com/aatind/k3v2/main/cloud-provider-cm.yaml > /var/lib/rancher/k3s/server/manifests/cloud-provider-cm.yaml
   owner: root
   path: /etc/initial-setup.sh
   permissions: '0755'
 
 k3os:
   
+  token: K106e660c9598cb67627040f42f816c87f86e763baa56eba3807169ad4cf7a66123::server:b015d42dad61cef0e99abba70db023db
   k3sArgs:
     - server
     - --cluster-init
