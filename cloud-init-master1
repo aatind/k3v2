@@ -5,6 +5,7 @@ boot_cmd:
 - mkdir -p /var/lib/nfs/sm
 - rc-update add rpc.statd
 - rc-update add nfs
+- "echo Europe/Copenhagen > /etc/timezone"
 write_files:
 - encoding: ""
   content: |-
@@ -19,12 +20,18 @@ write_files:
     curl -sL kube-vip.io/k3s | vipAddress=${K3S_VIP_IP} vipInterface=${INTERFACE} sh | sudo tee /var/lib/rancher/k3s/server/manifests/vip.yaml
     
     #Metallb#
-    # curl -sL https://raw.githubusercontent.com/metallb/metallb/v0.13.4/config/manifests/metallb-native.yaml > /var/lib/rancher/k3s/server/manifests/metallb-native.yaml
-    # curl -sL https://raw.githubusercontent.com/aatind/k3v2/main/metallb-config.yaml > /var/lib/rancher/k3s/server/manifests/metallb-config.yaml
+    curl -sL https://raw.githubusercontent.com/metallb/metallb/v0.13.4/config/manifests/metallb-native.yaml > /var/lib/rancher/k3s/server/manifests/metallb-native.yaml
+    curl -sL https://raw.githubusercontent.com/aatind/k3v2/main/metallb-config.yaml > /var/lib/rancher/k3s/server/manifests/metallb-config.yaml
 
   owner: root
   path: /etc/initial-setup.sh
   permissions: '0755'
+
+- encoding: b64
+    content: RXVyb3BlL0NvcGVuaGFnZW4=
+    owner: root:root
+    path: /etc/localtime
+    permissions: '0644'
 
 k3os:
   

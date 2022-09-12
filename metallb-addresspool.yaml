@@ -2,7 +2,7 @@ apiVersion: metallb.io/v1beta1
 kind: IPAddressPool
 metadata:
   name: systechit-pool
-  namespace: operators
+  namespace: metallb-system
 spec:
   addresses:
   - 192.168.31.40-192.168.31.80
