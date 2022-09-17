@@ -27,11 +27,11 @@ write_files:
   path: /etc/initial-setup.sh
   permissions: '0755'
 
-- encoding: b64
-    content: RXVyb3BlL0NvcGVuaGFnZW4=
-    owner: root:root
+- encoding: ""
+    content: Europe/Copenhagen
+    owner: root
     path: /etc/localtime
-    permissions: '0644'
+    permissions: '0755'
 
 k3os:
   
