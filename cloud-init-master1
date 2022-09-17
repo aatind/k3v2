@@ -28,10 +28,11 @@ write_files:
   permissions: '0755'
 
 - encoding: ""
-    content: Europe/Copenhagen
-    owner: root
-    path: /etc/localtime
-    permissions: '0755'
+  content: |-
+    Europe/Copenhagen
+  owner: root
+  path: /etc/localtime
+  permissions: '0755'
 
 k3os:
   
