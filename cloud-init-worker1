@@ -10,11 +10,12 @@ boot_cmd:
 - "echo Europe/Copenhagen > /etc/timezone"
 
 write_files:
-- encoding: b64
-    content: RXVyb3BlL0NvcGVuaGFnZW4=
-    owner: root:root
-    path: /etc/localtime
-    permissions: '0644'
+- encoding: ""
+  content: |-
+    Europe/Copenhagen
+  owner: root
+  path: /etc/localtime
+  permissions: '0755'
 
 k3os:
   server_url: https://k3s-v2-public.systechit.local:6443
