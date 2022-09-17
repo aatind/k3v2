@@ -19,4 +19,4 @@ write_files:
 
 k3os:
   server_url: https://k3s-v2-public.systechit.local:6443
-  token: K10e708468b2b08ca3abab35abb5e430688bd1ade5f6f5908b2b7685550ee7c2e61::server:b015d42dad61cef0e99abba70db023db
+  token: K10bfd31fcc15d19aeff5977029d502e46b40763d5fe3da6dba69f7c28d2553f136::server:b015d42dad61cef0e99abba70db023db
