@@ -20,8 +20,8 @@ write_files:
     curl -sL kube-vip.io/k3s | vipAddress=${K3S_VIP_IP} vipInterface=${INTERFACE} sh | sudo tee /var/lib/rancher/k3s/server/manifests/vip.yaml
     
     #Metallb#
-    curl -sL https://raw.githubusercontent.com/metallb/metallb/v0.13.4/config/manifests/metallb-native.yaml > /var/lib/rancher/k3s/server/manifests/metallb-native.yaml
-    curl -sL https://raw.githubusercontent.com/aatind/k3v2/main/metallb-config.yaml > /var/lib/rancher/k3s/server/manifests/metallb-config.yaml
+    #curl -sL https://raw.githubusercontent.com/metallb/metallb/v0.13.4/config/manifests/metallb-native.yaml > /var/lib/rancher/k3s/server/manifests/metallb-native.yaml
+    #curl -sL https://raw.githubusercontent.com/aatind/k3v2/main/metallb-config.yaml > /var/lib/rancher/k3s/server/manifests/metallb-config.yaml
 
   owner: root
   path: /etc/initial-setup.sh
