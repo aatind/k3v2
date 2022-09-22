@@ -2,7 +2,7 @@ apiVersion: helm.cattle.io/v1
 kind: HelmChart
 metadata:
   name: nfs-backup
-  namespace: nfs-provisioner
+  namespace: kube-system
 spec:
   chart: nfs-subdir-external-provisioner
   repo: https://kubernetes-sigs.github.io/nfs-subdir-external-provisioner
