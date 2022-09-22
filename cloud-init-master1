@@ -22,7 +22,12 @@ write_files:
     #Metallb#
     curl -sL https://raw.githubusercontent.com/metallb/metallb/v0.13.5/config/manifests/metallb-native.yaml > /var/lib/rancher/k3s/server/manifests/metallb-native.yaml
     curl -sL https://raw.githubusercontent.com/aatind/k3v2/main/metallb-config.yaml > /var/lib/rancher/k3s/server/manifests/metallb-config.yaml
+    
+    #NFS-Z2 provisioner
+    curl -sL https://raw.githubusercontent.com/aatind/k3v2/main/helm-chart-nfs-provisioner > /var/lib/rancher/k3s/server/manifests/nfs-z2-provisioner.yaml
 
+    #Traefik
+    curl -sL https://raw.githubusercontent.com/aatind/k3v2/main/helm-chart-traefik > /var/lib/rancher/k3s/server/manifests/traefik.yaml
   owner: root
   path: /etc/initial-setup.sh
   permissions: '0755'
@@ -36,7 +41,7 @@ write_files:
 
 k3os:
   
-  token: K106e660c9598cb67627040f42f816c87f86e763baa56eba3807169ad4cf7a66123::server:b015d42dad61cef0e99abba70db023db
+  token: miominmio17062020HelloDear
   k3sArgs:
     - server
     - --cluster-init
