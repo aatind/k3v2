@@ -7,7 +7,6 @@ spec:
   chart: traefik
   repo: https://helm.traefik.io/traefik
   targetNamespace: traefik
-  set:
   valuesContent: |-
     # Prod / Staging Example:
     - --certificatesresolvers.godaddy.acme.email=info@systechit.dk
