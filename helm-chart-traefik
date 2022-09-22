@@ -1,0 +1,60 @@
+apiVersion: helm.cattle.io/v1
+kind: HelmChart
+metadata:
+  name: traefik
+  namespace: kube-system
+spec:
+  chart: traefik
+  repo: https://helm.traefik.io/traefik
+  targetNamespace: traefik
+  set:
+  valuesContent: |-
+    # Prod / Staging Example:
+    - --certificatesresolvers.godaddy.acme.email=info@systechit.dk
+    - --certificatesresolvers.godaddy.acme.storage=/data/acme-godaddy.json
+    - --certificatesresolvers.godaddy.acme.tlschallenge=true
+    - --certificatesresolvers.godaddy.acme.caServer=https://acme-v02.api.letsencrypt.org/directory
+    - --serversTransport.insecureSkipVerify=true
+    # - --entryPoints.unifi-inform.address=:8080
+
+    # Allow externalnameservices
+    - --providers.kubernetesingress.allowexternalnameservices=true
+    - --providers.kubernetescrd.allowexternalnameservices=true
+
+    logs:
+    # Configure log settings here...
+        general:
+        level: ERROR
+
+    ports:
+    # Configure your entrypoints here...
+        web:
+        # (optional) Permanent Redirect to HTTPS
+        redirectTo: websecure
+        websecure:
+        tls:
+            enabled: true
+            # (optional) Set a Default CertResolver
+            certResolver: godaddy      
+
+    # Disable Dashboard
+    ingressRoute:
+        dashboard:
+        enabled: false
+
+    api:
+        dashboard: true
+        insecure: false
+
+    # Persistent Storage
+    persistence:
+        enabled: true
+        name: data
+        accessMode: ReadWriteOnce
+        path: /data
+
+
+    # Set Traefik as your default Ingress Controller, according to Kubernetes 1.19+ changes.
+    ingressClass:
+        enabled: true
+        isDefaultClass: true
