@@ -8,50 +8,38 @@ spec:
   repo: https://helm.traefik.io/traefik
   targetNamespace: traefik
   valuesContent: |-
-    # Prod / Staging Example:
-    - --certificatesresolvers.godaddy.acme.email=info@systechit.dk
-    - --certificatesresolvers.godaddy.acme.storage=/data/acme-godaddy.json
-    - --certificatesresolvers.godaddy.acme.tlschallenge=true
-    - --certificatesresolvers.godaddy.acme.caServer=https://acme-v02.api.letsencrypt.org/directory
-    - --serversTransport.insecureSkipVerify=true
-    # - --entryPoints.unifi-inform.address=:8080
+    certResolvers:
+      letsencrypt:
+        email: "info@systechit.dk"
+        httpChallenge:
+          entryPoint: "web"
+        # match the path to persistence
+        storage: /data/acme.json
 
     # Allow externalnameservices
-    - --providers.kubernetesingress.allowexternalnameservices=true
-    - --providers.kubernetescrd.allowexternalnameservices=true
-
-    logs:
-    # Configure log settings here...
-        general:
-        level: ERROR
+    providers:
+      kubernetesIngress:
+        allowExternalNamServices: "true"
+      kubernetesCRD:
+        allowExternalNameServices: "true"
 
     ports:
     # Configure your entrypoints here...
         web:
         # (optional) Permanent Redirect to HTTPS
-        redirectTo: websecure
+            redirectTo: websecure
         websecure:
         tls:
-            enabled: true
-            # (optional) Set a Default CertResolver
-            certResolver: godaddy      
+            enabled: true   
 
     # Disable Dashboard
     ingressRoute:
         dashboard:
-        enabled: false
-
-    api:
-        dashboard: true
-        insecure: false
+          enabled: false
 
     # Persistent Storage
     persistence:
         enabled: true
-        name: data
-        accessMode: ReadWriteOnce
-        path: /data
-
 
     # Set Traefik as your default Ingress Controller, according to Kubernetes 1.19+ changes.
     ingressClass:
