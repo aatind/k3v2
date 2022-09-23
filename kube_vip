@@ -1,4 +1,5 @@
 #!/bin/bash
+
 echo "apiVersion: apps/v1
 kind: DaemonSet
 metadata:
@@ -56,5 +57,4 @@ spec:
       serviceAccountName: kube-vip
       tolerations:
       - effect: NoSchedule
-        key: node-role.kubernetes.io/master
-  updateStrategy: {}"
+        key: node-role.kubernetes.io/master"
