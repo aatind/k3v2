@@ -14,4 +14,9 @@ spec:
     storageClass:
       name: "nfs-backup"
       reclaimPolicy: "Retain"
-      provisionerName: "k8s-sigs.io/nfs-backup"
+      provisionerName: "k8s-sigs.io/nfs-backup"  
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: nfs-provisioner
