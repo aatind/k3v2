@@ -14,7 +14,7 @@ spec:
         httpChallenge:
           entryPoint: "web"
         # match the path to persistence
-        storage: /data/acme.json
+        storage: "/data/acme.json"
 
     # Allow externalnameservices
     providers:
@@ -27,28 +27,27 @@ spec:
     # Configure your entrypoints here...
         web:
         # (optional) Permanent Redirect to HTTPS
-            redirectTo: websecure
+            redirectTo: "websecure"
         websecure:
         tls:
-            enabled: true   
+            enabled: "true"   
 
     # Disable Dashboard
     ingressRoute:
         dashboard:
-          enabled: false
+          enabled: "false"
 
     # Persistent Storage
     persistence:
-        enabled: true
+        enabled: "true"
 
     # Set Traefik as your default Ingress Controller, according to Kubernetes 1.19+ changes.
     ingressClass:
-        enabled: true
-        isDefaultClass: true
+        enabled: "true"
+        isDefaultClass: "true"
     
     service:
-      loadBalancerSourceRanges: 
-        - 192.168.31.40/32
+      loadBalancerSourceRanges: "192.168.31.40/32"
 
 ---
 apiVersion: v1
