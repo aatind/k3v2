@@ -29,7 +29,7 @@ spec:
         # (optional) Permanent Redirect to HTTPS
             redirectTo: "websecure"
         websecure:
-        tls:
+          tls:
             enabled: "true"   
 
     # Disable Dashboard
