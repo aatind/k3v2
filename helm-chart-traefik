@@ -47,7 +47,8 @@ spec:
         isDefaultClass: "true"
     
     service:
-      loadBalancerSourceRanges: "192.168.31.40/32"
+      loadBalancerSourceRanges: 
+      - 192.168.31.40/32
 
 ---
 apiVersion: v1
