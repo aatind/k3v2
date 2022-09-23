@@ -1,4 +1,5 @@
-apiVersion: apps/v1
+#!/bin/bash
+echo "apiVersion: apps/v1
 kind: DaemonSet
 metadata:
   creationTimestamp: null
@@ -56,4 +57,4 @@ spec:
       tolerations:
       - effect: NoSchedule
         key: node-role.kubernetes.io/master
-  updateStrategy: {}
+  updateStrategy: {}"
