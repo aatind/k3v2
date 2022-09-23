@@ -4,7 +4,7 @@ metadata:
   name: traefik
   namespace: kube-system
 spec:
-  chart: traefik
+  chart: traefik/traefik
   repo: https://helm.traefik.io/traefik
   targetNamespace: traefik
   valuesContent: |-
