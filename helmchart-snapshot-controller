@@ -6,10 +6,4 @@ metadata:
 spec:
   chart: snapshot-controller
   repo: https://democratic-csi.github.io/charts/
-  targetNamespace: democratic-snapshot-controller
-  
-  ---
-apiVersion: v1
-kind: Namespace
-metadata:
-  name: democratic-snapshot-controller
+  targetNamespace: kube-system
