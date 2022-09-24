@@ -1,0 +1,9 @@
+apiVersion: helm.cattle.io/v1
+kind: HelmChart
+metadata:
+  name: democratic-snapshot-controller
+  namespace: kube-system
+spec:
+  chart: democratic-csi/snapshot-controller
+  repo: https://democratic-csi.github.io/charts/
+  targetNamespace: democratic-snapshot-controller
