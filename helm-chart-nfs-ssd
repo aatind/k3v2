@@ -33,10 +33,7 @@ spec:
 
     volumeSnapshotClasses: 
     - name: truenas-ssd
-      parameters:
-    #  # if true, snapshots will be created with zfs send/receive
-      detachedSnapshots: "true"
-
+    
     driver:
       config:
         driver: freenas-nfs
