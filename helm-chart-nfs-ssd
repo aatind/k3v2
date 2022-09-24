@@ -4,7 +4,7 @@ metadata:
   name: democratic
   namespace: kube-system
 spec:
-  chart: democratic-csi
+  chart: democratic-csi/democratic-csi
   repo: https://democratic-csi.github.io/charts/
   targetNamespace: democratic-csi
   valuesContent: |-
