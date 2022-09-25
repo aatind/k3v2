@@ -47,9 +47,6 @@ spec:
     # Persistent Storage
     persistence:
       enabled: true
-      name: data
-      accessMode: ReadWriteOnce
-      path: /data
 
 
     # Set Traefik as your default Ingress Controller, according to Kubernetes 1.19+ changes.
@@ -61,6 +58,8 @@ spec:
       loadBalancerSourceRanges: 
       - 192.168.31.40/32
 
+    podSecurityContext:
+      fsGroup: null
 ---
 apiVersion: v1
 kind: Namespace
