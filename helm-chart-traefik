@@ -1,50 +1,64 @@
-values: |
-  additionalArguments:
-  # Prod / Staging Example:
-  - --certificatesresolvers.godaddy.acme.email=info@systechit.dk
-  - --certificatesresolvers.godaddy.acme.storage=/data/acme-godaddy.json
-  - --certificatesresolvers.godaddy.acme.tlschallenge=true
-  - --certificatesresolvers.godaddy.acme.caServer=https://acme-staging-v02.api.letsencrypt.org/directory
-  - --serversTransport.insecureSkipVerify=true
+apiVersion: helm.cattle.io/v1
+kind: HelmChart
+metadata:
+  name: traefik
+  namespace: kube-system
+spec:
+  chart: traefik
+  repo: https://helm.traefik.io/traefik
+  targetNamespace: traefik
+  valuesContent: |-   
+	  additionalArguments:
+	  # Prod / Staging Example:
+	  - --certificatesresolvers.godaddy.acme.email=info@systechit.dk
+	  - --certificatesresolvers.godaddy.acme.storage=/data/acme-godaddy.json
+	  - --certificatesresolvers.godaddy.acme.tlschallenge=true
+	  - --certificatesresolvers.godaddy.acme.caServer=https://acme-staging-v02.api.letsencrypt.org/directory
+	  - --serversTransport.insecureSkipVerify=true
 
-  # Allow externalnameservices
-  - --providers.kubernetesingress.allowexternalnameservices=true
-  - --providers.kubernetescrd.allowexternalnameservices=true
+	  # Allow externalnameservices
+	  - --providers.kubernetesingress.allowexternalnameservices=true
+	  - --providers.kubernetescrd.allowexternalnameservices=true
 
-  logs:
-  # Configure log settings here...
-    general:
-      level: ERROR
+	  logs:
+	  # Configure log settings here...
+	    general:
+	      level: ERROR
 
-  ports:
-  # Configure your entrypoints here...
-    web:
-      # (optional) Permanent Redirect to HTTPS
-      redirectTo: websecure
-    websecure:
-      tls:
-        enabled: true
-        # (optional) Set a Default CertResolver
-        certResolver: godaddy      
+	  ports:
+	  # Configure your entrypoints here...
+	    web:
+	      # (optional) Permanent Redirect to HTTPS
+	      redirectTo: websecure
+	    websecure:
+	      tls:
+		enabled: true
+		# (optional) Set a Default CertResolver
+		certResolver: godaddy      
 
-  # Disable Dashboard
-  ingressRoute:
-    dashboard:
-      enabled: true
+	  # Disable Dashboard
+	  ingressRoute:
+	    dashboard:
+	      enabled: true
 
-  api:
-    dashboard: true
-    insecure: false
+	  api:
+	    dashboard: true
+	    insecure: false
 
-  # Persistent Storage
-  persistence:
-    enabled: true
+	  # Persistent Storage
+	  persistence:
+	    enabled: true
 
-  # Set Traefik as your default Ingress Controller, according to Kubernetes 1.19+ changes.
-  ingressClass:
-    enabled: true
-    isDefaultClass: true
+	  # Set Traefik as your default Ingress Controller, according to Kubernetes 1.19+ changes.
+	  ingressClass:
+	    enabled: true
+	    isDefaultClass: true
 
-  service:
-    loadBalancerSourceRanges: 
-    - 192.168.31.40/32
+	  service:
+	    loadBalancerSourceRanges: 
+	    - 192.168.31.40/32
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: traefik
