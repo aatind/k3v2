@@ -12,7 +12,7 @@ spec:
     - "--certificatesresolvers.godaddy.acme.email=info@systechit.dk"
     - "--certificatesresolvers.godaddy.acme.storage=/data/acme-godaddy.json"
     - "--certificatesresolvers.godaddy.acme.tlschallenge=true"
-    - "--certificatesresolvers.godaddy.acme.caServer=https://acme-v02.api.letsencrypt.org/directory"
+    - "--certificatesresolvers.godaddy.acme.caServer=https://acme-staging-v02.api.letsencrypt.org/directory"
     - "--serversTransport.insecureSkipVerify=true"
 
     # Allow externalnameservices
@@ -58,8 +58,8 @@ spec:
       loadBalancerSourceRanges: 
       - 192.168.31.40/32
 
-    podSecurityContext:
-      fsGroup: null
+    #podSecurityContext:
+    #  fsGroup: null
 ---
 apiVersion: v1
 kind: Namespace
