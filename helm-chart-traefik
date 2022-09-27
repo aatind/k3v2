@@ -7,18 +7,17 @@ spec:
   chart: traefik
   repo: https://helm.traefik.io/traefik
   targetNamespace: traefik
-  valuesContent: |-   
+  valuesContent: |-
     additionalArguments:
-    # Prod / Staging Example:
-    - --certificatesresolvers.godaddy.acme.email=info@systechit.dk
-    - --certificatesresolvers.godaddy.acme.storage=/data/acme-godaddy.json
-    - --certificatesresolvers.godaddy.acme.tlschallenge=true
-    - --certificatesresolvers.godaddy.acme.caServer=https://acme-staging-v02.api.letsencrypt.org/directory
-    - --serversTransport.insecureSkipVerify=true
+    # Prod:
+     - --certificatesresolvers.godaddy.acme.email=info@systechit.dk
+     - --certificatesresolvers.godaddy.acme.storage=/data/acme-godaddy.json
+     - --certificatesresolvers.godaddy.acme.tlschallenge=true
+     - --certificatesresolvers.godaddy.acme.caServer=https://acme-v02.api.letsencrypt.org/directory
 
     # Allow externalnameservices
-    - --providers.kubernetesingress.allowexternalnameservices=true
-    - --providers.kubernetescrd.allowexternalnameservices=true
+     - --providers.kubernetesingress.allowexternalnameservices=true
+     - --providers.kubernetescrd.allowexternalnameservices=true
 
     logs:
     # Configure log settings here...
@@ -32,14 +31,14 @@ spec:
         redirectTo: websecure
       websecure:
         tls:
-    enabled: true
+         enabled: true
     # (optional) Set a Default CertResolver
-    certResolver: godaddy      
+         certResolver: godaddy
 
     # Disable Dashboard
     ingressRoute:
       dashboard:
-        enabled: true
+        enabled: false
 
     api:
       dashboard: true
@@ -54,9 +53,12 @@ spec:
       enabled: true
       isDefaultClass: true
 
+    podSecurityContext:
+      fsGroup: null
+
     service:
-      loadBalancerSourceRanges: 
-      - 192.168.31.40/32
+      spec:
+       loadBalancerIP: "192.168.31.80"
 ---
 apiVersion: v1
 kind: Namespace
