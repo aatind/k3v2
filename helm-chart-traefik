@@ -14,6 +14,7 @@ spec:
      - --certificatesresolvers.godaddy.acme.storage=/data/acme-godaddy.json
      - --certificatesresolvers.godaddy.acme.tlschallenge=true
      - --certificatesresolvers.godaddy.acme.caServer=https://acme-v02.api.letsencrypt.org/directory
+     - --serversTransport.insecureSkipVerify=true
 
     # Allow externalnameservices
      - --providers.kubernetesingress.allowexternalnameservices=true
