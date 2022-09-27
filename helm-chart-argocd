@@ -12,3 +12,22 @@ apiVersion: v1
 kind: Namespace
 metadata:
   name: argocd
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: argocd
+  namespace: argocd
+  annotations:
+spec:
+  rules:
+  - host: argocd.systechit.dk
+    http:
+      paths:
+      - pathType: Prefix
+        path: "/"
+        backend:
+          service:
+            name: argocd-server
+            port:
+              number: 80
