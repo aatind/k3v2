@@ -1,4 +1,5 @@
-apiVersion: helm.cattle.io/v1
+#!/bin/bash
+echo "apiVersion: helm.cattle.io/v1
 kind: HelmChart
 metadata:
   name: democratic
@@ -40,27 +41,27 @@ spec:
         instance_id:
         httpConnection:
           protocol: http
-          host: 192.168.31.31
+          host: $nasAddress
           port: 80
           # use only 1 of apiKey or username/password
           # if both are present, apiKey is preferred
           # apiKey is only available starting in TrueNAS-12
           #apiKey:
-          username: root
-          password: 22446688aa!
+          username: $nasUsername
+          password: $nasPassword
           allowInsecure: true
           # use apiVersion 2 for TrueNAS-12 and up (will work on 11.x in some scenarios as well)
           # leave unset for auto-detection
           apiVersion: 2
         sshConnection:
-          host: 192.168.31.31
+          host: $nasAddress
           port: 22
-          username: root
+          username: $nasUsername
           # use either password or key
-          password: "22446688aa!"
+          password: $nasPassword
         zfs:
-          datasetParentName: Flash-Z1/k3os-public-v2/vols
-          detachedSnapshotsDatasetParentName: Flash-Z1/k3os-public-v2/snaps
+          datasetParentName: Flash-Z1/$clusterName/vol
+          detachedSnapshotsDatasetParentName: Flash-Z1/$clusterName/snaps
           datasetEnableQuotas: true
           datasetEnableReservation: false
           datasetPermissionsMode: "0777"
@@ -72,7 +73,7 @@ spec:
 
         nfs:
           #shareCommentTemplate: "{{ parameters.[csi.storage.k8s.io/pvc/namespace] }}-{{ parameters.[csi.storage.k8s.io/pvc/name] }}"
-          shareHost: 192.168.31.31
+          shareHost: $nasAddress
           shareAlldirs: false
           shareAllowedHosts: []
           shareAllowedNetworks: []
@@ -85,3 +86,4 @@ apiVersion: v1
 kind: Namespace
 metadata:
   name: democratic-csi
+"
