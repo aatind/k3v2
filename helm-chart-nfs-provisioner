@@ -9,8 +9,8 @@ spec:
   targetNamespace: nfs-provisioner
   valuesContent: |-
     nfs:
-      server: "192.168.31.31"
-      path: "/mnt/Z2/Minio-destination"
+      server: "$nfsServer"
+      path: "$nfsPath"
     storageClass:
       name: "nfs-backup"
       reclaimPolicy: "Retain"
