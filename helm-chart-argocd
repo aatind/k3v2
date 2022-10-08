@@ -22,7 +22,7 @@ metadata:
   annotations:
 spec:
   rules:
-  - host: "$argo-fqdn"
+  - host: $argo-fqdn
     http:
       paths:
       - pathType: Prefix
