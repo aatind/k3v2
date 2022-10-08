@@ -60,7 +60,7 @@ spec:
           # use either password or key
           password: $nasPassword
         zfs:
-          datasetParentName: Flash-Z1/$clusterName/vol
+          datasetParentName: Flash-Z1/$clusterName/vols
           detachedSnapshotsDatasetParentName: Flash-Z1/$clusterName/snaps
           datasetEnableQuotas: true
           datasetEnableReservation: false
