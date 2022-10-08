@@ -60,8 +60,8 @@ spec:
           # use either password or key
           password: $nasPassword
         zfs:
-          datasetParentName: $poolName/$clusterName/vols
-          detachedSnapshotsDatasetParentName: $poolName/$clusterName/snaps
+          datasetParentName: $nasPoolName/$clusterName/vols
+          detachedSnapshotsDatasetParentName: $nasPoolName/$clusterName/snaps
           datasetEnableQuotas: true
           datasetEnableReservation: false
           datasetPermissionsMode: "0777"
