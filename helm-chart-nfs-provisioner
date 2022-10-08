@@ -10,7 +10,7 @@ spec:
   targetNamespace: nfs-provisioner
   valuesContent: |-
     nfs:
-      server: "$nfsServer"
+      server: "$nas_address"
       path: "$nfsPath"
     storageClass:
       name: "nfs-backup"
