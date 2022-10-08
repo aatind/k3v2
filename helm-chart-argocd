@@ -1,4 +1,5 @@
-apiVersion: helm.cattle.io/v1
+#!/bin/bash
+echo "apiVersion: helm.cattle.io/v1
 kind: HelmChart
 metadata:
   name: argo-cd
@@ -21,7 +22,7 @@ metadata:
   annotations:
 spec:
   rules:
-  - host: argocd.systechit.dk
+  - host: "$argo-fqdn"
     http:
       paths:
       - pathType: Prefix
@@ -31,3 +32,4 @@ spec:
             name: argo-cd-argocd-server
             port:
               number: 80
+"
