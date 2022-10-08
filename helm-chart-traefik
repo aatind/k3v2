@@ -1,4 +1,5 @@
-apiVersion: helm.cattle.io/v1
+#!/bin/bash
+echo "apiVersion: helm.cattle.io/v1
 kind: HelmChart
 metadata:
   name: traefik
@@ -10,7 +11,7 @@ spec:
   valuesContent: |-
     additionalArguments:
     # Prod:
-     - --certificatesresolvers.godaddy.acme.email=info@systechit.dk
+     - --certificatesresolvers.godaddy.acme.email=$email
      - --certificatesresolvers.godaddy.acme.storage=/data/acme-godaddy.json
      - --certificatesresolvers.godaddy.acme.tlschallenge=true
      - --certificatesresolvers.godaddy.acme.caServer=https://acme-v02.api.letsencrypt.org/directory
@@ -59,9 +60,10 @@ spec:
 
     service:
       spec:
-       loadBalancerIP: "192.168.31.50"
+       loadBalancerIP: $loadBalancerIP
 ---
 apiVersion: v1
 kind: Namespace
 metadata:
   name: traefik
+"
